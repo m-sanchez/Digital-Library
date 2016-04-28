@@ -2,16 +2,18 @@
 	<p ng-if="login">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat mi, auctor sit amet erat vitae, finibus sagittis risus. Curabitur
 	non laoreet elit, vel blandit purus. Integereget nunc eget purus tincidunt finibus sit.	</p>
 	<p ng-if="!login">El código introducido no es correcto / ha sido utilizado</p>
+
 	<h5>INTRODUCE EL CÓDIGO</h5>
-	  	<div class="row" id="divPopup">
-		   <div class="col col-67" style="float:left;padding:0"> 
-		      <input type="text" ng-model="codeId"/>
-		   </div>
-		   <div class="col col-25 buttonAccept" style="float:left;padding:0">
-		    <button class="buttonAccept" ng-click="validateCode(codeId)">Acceder</button>
-		   </div>
-		<div class="bar bar-footer">
-			<button class="button button-block button-clear buttonOmitir" ng-click="closePopup()" >Omitir</button>
-		</div> 
-	</div> 
+
+	<div class="row" id="divPopup">
+		<div class="col col-67" style="float:left;padding:0">
+			<input type="text" ng-model="codeId" />
+		</div>
+		<div class="col col-25 buttonAccept" style="float:left;padding:0">
+			<button class="buttonAccept" ng-click="validateCode(codeId)">Acceder</button>
+		</div>
+	</div>
+	<div class="row">
+		<button class="button button-block button-clear buttonOmitir" ng-click="closePopup()">Omitir</button>
+	</div>
 </div>

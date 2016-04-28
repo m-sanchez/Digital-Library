@@ -1,7 +1,7 @@
 (function() {
 
-	var CLIENT_ID = "560a3cff1f229af2712fe3bf";
-	var API_HOST = "http://bdigital-slash.cloud.slashpool.com";
+	var CLIENT_ID = "55ed72b29a80df3024fa0d05";
+	var API_HOST = "http://192.168.1.54:3000";
 	var API_PATH = API_HOST + "/api";
 
 	angular.module('slash.bdigital', [
