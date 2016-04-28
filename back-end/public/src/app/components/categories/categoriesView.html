@@ -1,0 +1,31 @@
+
+<div class="admin-top">
+    <h5>Categorias</h5>
+    <br/>
+    <div class="row">
+        <div class="col-md-9 col-xs-8">
+            <input type="text"class="form-control" placeholder="Nueva categoria" ng-model="currentCategory.name" ng-class="{error:errorCategory}"/>
+        </div>
+        <div class="col-md-3 col-xs-4">
+            <input class="btn btn-primary fullw" type="button" value="Guardar" ng-click="saveCategory()">
+        </div>
+    </div>
+</div>
+<div class="planeta-table">
+    <div class="row" ng-repeat="category in categories" ng-class="{'editing':category==currentCategory}">
+        <div class="col-md-9 col-xs-8" ><span>{{category.name}}</span></div>
+        <div class="col-md-3 col-xs-4" >
+            <a ng-really-head="Borrar" ng-really-message="¿Estás seguro de borrar la categoria {{category.name}} ?" ng-really-click="deleteCategory($index)" item="item"><span class="glyphicon glyphicon-remove-circle" ></span></a>
+
+            <span class="glyphicon glyphicon-pencil" ng-click="edit($index)"></span>
+        </div>
+    </div>
+</div>
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="loading-wrapper" ng-class="{hiding:loaded}">
+<div class="timer">
+    Loading...
+</div>
+</div>
+

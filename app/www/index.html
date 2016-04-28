@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+		<title>BDigital</title>
+		
+		<!-- CSS's -->
+		<link href="css/ionic.app.css" rel="stylesheet" />
+		<link href="lib/coverflow/coverflow.css" rel="stylesheet" />
+		<link href="lib/monocle/monocore.css" rel="stylesheet" />
+		<link href="lib/monocle/monoctrl.css" rel="stylesheet" />
+		<link href="app/login/login.css" rel="stylesheet" />
+		<link href="app/faqs/faqs.css" rel="stylesheet" />
+		<link href="app/covers/covers.css" rel="stylesheet" />
+		<link href="app/books/books.css" rel="stylesheet" />
+		<link href="app/book/lector/lector.css" rel="stylesheet" />
+		<link href="lib/ngprogress/ngProgress.css" rel="stylesheet">
+
+		<!-- Angular libraries -->
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<script src="lib/ngTouchend.min.js"></script>
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+		<script src="lib/angular-translate/angular-translate.min.js"></script>
+		<script src="lib/angular-translate/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+		<script src="lib/ngprogress/build/ngprogress.min.js"></script>
+
+		<!-- Other libraries -->
+		<script src="lib/monocle/zip.js"></script>
+		<script src="lib/monocle/z-worker.js"></script>
+		<script src="lib/monocle/inflate.js"></script>
+		<script src="lib/monocle/efm.js"></script>
+		<script src="lib/monocle/unziped.js"></script>
+		<script src="lib/monocle/monocore.js"></script>
+		<script src="lib/monocle/monoctrl.js"></script>
+		<script src="lib/coverflow/coverflow.js"></script>
+
+
+		<!-- Shared scripts -->
+		<script src="shared/dpi.js"></script>
+		<script src="shared/filesystem.js"></script>
+		<script src="shared/utils.js"></script>
+		<script src="shared/really.js"></script>
+		<script src="shared/network/offline.js"></script>
+		<script src="shared/network/rest.js"></script>
+		<script src="shared/network/loading.js"></script>
+
+
+		<!-- App js -->
+		<script src="app/app.js"></script>
+		<script src="app/shared/fullscreen.popover.js"></script>
+		<script src="app/shared/pullup.menu.js"></script>
+		<script src="app/serverurl.interceptor.js"></script>
+		<script src="app/auth.interceptor.js"></script>
+		<script src="app/faqs/faqs.js"></script>
+		<script src="app/books/books.js"></script>
+		<script src="app/covers/covers.js"></script>
+		<script src="app/book/book.js"></script>
+		<script src="app/book/book.menu.js"></script>
+		<script src="app/book/lector/epub.reader.js"></script>
+		<script src="app/book/lector/lector.js"></script>
+		<script src="app/book/lector/page.count.js"></script>
+		<script src="app/services/book.service.js"></script>
+		<script src="app/services/popup.service.js"></script>
+		<script src="app/services/code.service.js"></script>
+		
+
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="cordova.js"></script>
+
+		<!-- run-as com.slashmobility.bdigital ls -l /data/data/com.slashmobility.bdigital/files/Eight\ weeks\ of\ bruce-1440508987889-ionic.epub-unzip -->
+	</head>
+	<body>
+
+		<ion-nav-view></ion-nav-view>
+
+		<script type="text/javascript">
+			if(window.cordova){
+				document.addEventListener("deviceready", function onDeviceReady(){
+					angular.bootstrap(document, ["slash.bdigital"]);
+				}, false);
+			}else{
+				angular.bootstrap(document, ["slash.bdigital"]);
+			}
+		</script>
+	</body>
+</html>

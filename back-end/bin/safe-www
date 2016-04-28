@@ -1,0 +1,142 @@
+#!/usr/bin/env node
+
+/*
+supervisor bin/safe-www
+*/
+
+/**
+ * Module dependencies.
+ */
+
+var cluster = require("cluster");
+var debug = require('debug')('mango-api:server');
+var http = require('http');
+
+var N_PROC = 1;
+
+/**
+ * Get ip and port from environment
+ */
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
+var port = normalizePort(process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || '3000');
+
+if(cluster.isMaster) {
+	for(var i=0; i<N_PROC; i++)
+		cluster.fork();
+
+	cluster.on("disconnect", function(worker){
+		console.error("Worker crashed. Starting a new one");
+		cluster.fork();
+	});
+}else{
+	var domain = require("domain");
+
+	var app = require('../app');
+	console.log("Express initialized"); // Express => app	
+
+	var server = http.createServer(function(req, res){
+		// console.log(cluster.worker.id + " got a request");
+
+		var d = domain.create();
+
+		d.on("error", function(er){
+			// We have a crash
+			console.error("error", er.stack);
+
+			try {
+				// Selfdestruct: Kill the process within 30 seconds.
+				var killtimer = setTimeout(function(){
+					process.exit(1);
+				}, 30000);
+				killtimer.unref(); // But don't keep the process open waiting to be killed
+
+				server.close(); /* Stop taking new requests.
+				The main problem is that the server crashed in an undefined state. We really can't keep it up because there might be references that haven't been freed so we could have a memory leak.
+				*/
+
+				if(!res.headersSent){
+					res.statusCode = 500;
+					res.setHeader("Content-Type", "text/plain");
+					res.end("Internal Server Error");
+				}
+			}catch(er2){
+				console.error("Error sending 500!", er2.stack);
+			}
+
+			cluster.worker.disconnect(); // Tell our master we are done.
+			process.exit(1); // Exit
+		});
+
+		// We need to bind these two vars, as they've been created before the domain was created
+		d.add(req);
+		d.add(res);
+
+		d.run(function(){
+			// Run the server
+			app(req, res);
+		});
+	});
+
+	console.log("Listening to " + ipaddress + ", " + port);
+	server.listen(port, ipaddress);
+	server.on('error', onError);
+	server.on('listening', onListening);
+}
+
+
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+	var port = parseInt(val, 10);
+
+	if (isNaN(port)) {
+		// named pipe
+		return val;
+	}
+
+	if (port >= 0) {
+		// port number
+		return port;
+	}
+
+	return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+	var addr = server.address();
+	var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+	debug('Listening on ' + bind);
+}

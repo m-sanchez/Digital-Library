@@ -1,0 +1,544 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss
+ */
+$navbar-inverse-link-color: #5AADBB;
+$icon-font-path: "../fonts/";
+$brand-primary:#98364b; // #337ab7
+$brand-yellow:#fee34e;
+$border-radius-base:        4px !default;
+$border-radius-large:       20px !default;
+$border-radius-small:       3px !default;
+/**
+ *  Do not remove this comments bellow. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap";
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+body{
+  color:#434244;
+  font-family: 'Open Sans', sans-serif;
+}
+.btn-primary{
+  &.outline{
+    background-color: white;
+    color:$brand-primary;
+    font-weight: bold;
+    &.ng-click-active{
+      background-color: white;
+      color:$brand-primary;
+    }
+    &:active:hover, &:active:focus{
+      background-color: white;
+      color:$brand-primary;
+    }
+  }
+}
+a{cursor:pointer;}
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+.fullw{
+  width:100%
+}
+h4{font-weight: bold;}
+.row.login{padding-top:100px;}
+
+
+
+.planeta-table{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.planeta-table .head{
+  background-color: #DDD;
+  font-weight: 600;
+}
+.planeta-table .glyphicon{
+  float: right;
+  cursor:pointer;
+  font-size:18px;
+  margin: 0 10px;
+}
+.planeta-table .row{
+  padding: 10px 0;
+  margin: 0;
+  margin:0 ;
+
+}
+
+
+.planeta-table >.row:first-child{
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.planeta-table >.row:last-child{
+  margin-bottom: 0;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.planeta-table > .row{
+  border: 1px solid #ccc;
+  margin-bottom: -1px;
+}
+
+a.no-hover:hover{
+  text-decoration: none;
+  color:white;
+}
+small + .planeta-table{
+  padding-top:10px;
+}
+
+.editing{
+  background-color: #ececec;
+}
+
+.glyphicon.right{
+  float:right;
+}
+
+.pagination-wrapper{
+  text-align:center;
+}
+.drop-box {
+  background: #F8F8F8;
+  border: 3px dashed #DDD;
+  width: 120px;
+  height: 160px;
+  text-align: center;
+  padding: 10px 10px 0 10px;
+  position: relative;
+  &.dragover{
+    border: 3px dashed $brand-yellow;
+  }
+  &.reject{
+    border: 3px dashed $brand-primary;
+  }
+  &.drop-file{
+height:34px; width:100%;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    .drop-text {
+      position: absolute;
+      margin-left: 0;
+      padding-top: 5px;
+      width: 100%;
+      background: none !important;
+      left: 5px;
+      text-align: left;
+
+    }
+    .search-text{
+      position: absolute;
+      margin-left: 0;
+      padding-top: 3px;
+      /* width: 100%; */
+
+      right: 0;
+      top: -1px;
+      background-color: #DDD;
+
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 0 5px 5px 0;
+      z-index: 10;
+    }
+  }
+}
+
+.image-dropped{position:absolute;
+
+
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;}
+.drop-text{
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  padding: 5px;
+  padding-top: 30px;
+  background-color: rgba(255,255,255,0.3);
+
+}
+.cover-list{
+  width: 50px;
+  height: 75px;
+  background-size: cover;
+  background-position: center;
+  margin-left:3px;
+}
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  margin:-1.5px;
+}
+/* Fallback styles */
+.book {
+  display: inline-block;
+  box-shadow: 5px 5px 20px #333;
+  margin: 10px;
+}
+
+.book img { vertical-align: middle; }
+
+/*
+ *  In order for this to work, you must use Modernizer
+ *  to detect 3D transform browser support. This will add
+ *  a "csstransforms3d" class to the HTML element.
+ *
+ *  Visit http://modernizr.com/ for installation instructions
+ */
+
+.csstransforms3d  .books {
+  -moz-perspective: 100px;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.csstransforms3d  .book {
+  position: relative;
+  -moz-perspective: 100px;
+  -moz-transform: rotateY(-3deg);
+  -webkit-transform: perspective(100) rotateY(-3deg);
+  outline: 1px solid transparent; /* Helps smooth jagged edges in Firefox */
+  box-shadow: none;
+  margin: 0;
+}
+
+//.csstransforms3d  .book img {
+//  position: relative;
+//  max-width: 100%;
+//}
+//
+//.csstransforms3d  .book:before,
+//.csstransforms3d  .book:after {
+//  position: absolute;
+//  top: 2%;
+//  height: 96%;
+//  content: ' ';
+//  z-index: -1;
+//}
+//
+//.csstransforms3d  .book:before {
+//  width: 100%;
+//  left: 7.5%;
+//  background-color: #d5d5d5;
+//  box-shadow: 2px 2px 10px #333;
+//}
+//
+//.csstransforms3d  .book:after {
+//  width: 5%;
+//  left: 100%;
+//  background-color: #EFEFEF;
+//  box-shadow: inset 0px 0px 5px #aaa;
+//  -moz-transform: rotateY(20deg);
+//  -webkit-transform: perspective(100) rotateY(20deg);
+//}
+a span,a:hover span {
+  color:#333333;
+  text-decoration: none;
+}
+input.error{
+  border:1px solid red;
+}
+
+
+
+
+
+@-webkit-keyframes timer {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes timer {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes timer {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes timer {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* Styles for old versions of IE */
+.timer {
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.timer:not(:required) {
+  border: 6px solid $brand-primary;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+  border-radius: 24px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999px;
+  width: 48px;
+  height: 48px;
+}
+.timer:not(:required)::before {
+  -webkit-animation: timer 1250ms infinite linear;
+  -moz-animation: timer 1250ms infinite linear;
+  -ms-animation: timer 1250ms infinite linear;
+  -o-animation: timer 1250ms infinite linear;
+  animation: timer 1250ms infinite linear;
+  -webkit-transform-origin: 3px 3px;
+  -moz-transform-origin: 3px 3px;
+  -ms-transform-origin: 3px 3px;
+  -o-transform-origin: 3px 3px;
+  transform-origin: 3px 3px;
+  background: $brand-primary;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 19.2px;
+  left: 15px;
+  top: 15px;
+}
+.timer:not(:required)::after {
+  -webkit-animation: timer 15000ms infinite linear;
+  -moz-animation: timer 15000ms infinite linear;
+  -ms-animation: timer 15000ms infinite linear;
+  -o-animation: timer 15000ms infinite linear;
+  animation: timer 15000ms infinite linear;
+  -webkit-transform-origin: 3px 3px;
+  -moz-transform-origin: 3px 3px;
+  -ms-transform-origin: 3px 3px;
+  -o-transform-origin: 3px 3px;
+  transform-origin: 3px 3px;
+  background: $brand-primary;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 16px;
+  left: 15px;
+  top: 15px;
+}
+.loading-wrapper{
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.67);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  transition: all 0.4s ease 0s;
+  visibility: visible;
+  z-index: 999;
+}
+.loading-wrapper.hiding{
+  opacity:0;
+  visibility: hidden;
+}
+.timer{
+  top: 50%;
+  left: 50%;
+}
+.navbar-default {
+  background-color: $brand-yellow;
+  border: none;
+  border-radius: 0;
+}
+.modal-dialog {
+
+  margin: 15vh auto;
+  .modal-content{
+    box-shadow: none;
+    border:none;
+    .btn{
+      min-width:100px;
+      &.calendar{
+        width: 40px;
+        min-width: 1px;
+        background-color: #eeeeee;
+        border: 1px solid #ccc;
+      }
+    }
+    .modal-header,.modal-footer {
+
+      border:none;
+
+    }
+  }
+}
+
+.action-add{
+  color:$brand-primary;
+  margin-top:25px;
+  font-weight:bold;
+
+  span{
+    cursor:pointer;
+    margin-right:5px;
+  }
+}
+.row{
+  .action-add{
+    margin-top:0;
+  }
+}
+.tab-content{
+  .row:first-child{margin-top:15px;
+    .action-add{
+      padding-top: 7px;
+    }}
+}
+.input-group-addon{
+  &.glyphicon{top:0}
+}
+.glyphicon-check{
+  color:$brand-primary
+}
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+
+// injector
+// endinjector
+.form-group.cal{
+  margin-bottom: 6px;
+}
+.form-horizontal .control-label{
+  text-align:left;
+}
+.yellow-container{
+  width: 100%;
+  height: 100vh;
+  background-color: $brand-yellow;
+}
+.logo-wrapper{width:100%;text-align:center;margin-top:100px;}
+.logo-image{
+  margin:0 auto;
+}
+
+.panel-default > .panel-heading {
+  color: #333333;
+  background-color: white;
+  border: none;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 5px;
+  border-radius:15px 15px 0 0;
+  font-weight: 600;
+}
+.panel-body{
+  background-color: white;
+  border-radius: 0 0 15px 15px ;
+  padding: 20px;
+  padding-bottom:40px;
+}
+.panel-default{
+  border:none;
+  border-radius:20px;
+  background-color:transparent;
+  margin-top:20px;
+}

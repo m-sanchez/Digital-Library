@@ -1,0 +1,102 @@
+<h4><a href="#/app/clients">Clientes</a> > {{currentClient.company}}</h4>
+
+
+<tabset>
+
+    <tab heading="Libros">
+        <div ng-click="newBook()" class="action-add">
+            <span class="glyphicon glyphicon-plus-sign"></span> <span>Añadir libro</span></div>
+        <div class="planeta-table">
+            <div class="row" ng-repeat="book in books" ng-class="{'editing':book==currentBook}"
+                 ng-click="selectBook(book)">
+                <div class="col-md-1 vcenter">
+                    <div class="books csstransforms3d">
+                        <div class="book">
+                            <div class="cover-list" style="background-image:url('{{getImageSrc(book.coverFile)}}')"></div>
+                        </div>
+                    	</div>
+                </div>
+                <div class="col-md-9 col-xs-8 vcenter"><span>{{book.title}}</span>
+                </div>
+
+                <div class="col-md-2 col-xs-2 vcenter" >
+                    <a ng-really-head="Borrar" ng-really-message="¿Estás seguro de borrar el libro {{book.title}} ?" ng-really-click="deleteBook($index)" item="item"><span class="glyphicon glyphicon-remove-circle" ></span></a>
+
+                    <span class="glyphicon glyphicon-pencil" ng-click="edit($index)"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </tab>
+
+    <tab heading="Codigos">
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div ng-click="newCode()" class="action-add">
+                    <span class="glyphicon glyphicon-plus-sign"></span> <span>Generar paquete de codigos</span>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary outline btn-block" ng-click="downloadCSVClient()">Descargar CSV</button>
+            </div>
+        </div>
+
+
+        <div class="planeta-table">
+            <div class="row head" >
+                <div class="col-md-1 ">Entregado
+                </div>
+                <div class="col-md-3 ">
+                    <span>Descripción</span>
+                </div>
+                <div class="col-md-2 "><span>F.Inicio</span>
+                </div>
+                <div class="col-md-2 "><span>F. Fin</span>
+                </div>
+                <div class="col-md-2 "><span>Núm. Códigos</span>
+                </div>
+
+            </div>
+            <div class="row" ng-repeat="package in codes">
+
+                <div class="col-md-1 ">
+
+                    <span class="glyphicon" style="cursor:auto" ng-class="{'glyphicon-check':package.committed,'glyphicon-unchecked':!package.committed}"></span>
+                </div>
+                <div class="col-md-3 ">
+                    <span>{{package.description}}</span>
+                </div>
+                <div class="col-md-2 "><span>{{package.startDate| date:"dd/MM/yyyy" }}</span>
+                </div>
+                <div class="col-md-2 "><span>{{package.endDate| date:"dd/MM/yyyy" }}</span>
+                </div>
+                <div class="col-md-2 "><span>{{package.number}}</span>
+                </div>
+
+                <div class="col-md-2 col-xs-4 " >
+                    <span class="glyphicon glyphicon-download" ng-click="downloadCSV($index)"></span>
+                    <a ng-really-head="Borrar" ng-really-message="¿Estás seguro de borrar el codigo cuya descripcion es {{package.description}} ?" ng-really-click="deleteCode($index)" item="item"><span class="glyphicon glyphicon-remove-circle" ></span></a>
+
+                    <span class="glyphicon glyphicon-pencil" ng-click="editCode($index)"></span>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </tab>
+</tabset>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<!--<div class="loading-wrapper" ng-class="{hiding:loaded}">
+    <div class="timer">
+        Loading...
+    </div>
+</div>-->
+
+

@@ -1,0 +1,114 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Libro</h4>
+    </div>  <form class="form-horizontal"  ng-submit="ok()">
+    <div class="modal-body">
+
+        <!-- File Button -->
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="portada">Portada</label>
+            <div class="col-md-10">
+                <div ngf-select="" ngf-drop="" ng-model="book.cover" ng-required="true"
+                     ng-model-rejected="rejFiles" ngf-multiple="multiple"
+                     ngf-accept="accept" accept="image/*" ng-disabled="disabled"
+                     ngf-capture="capture" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                     ngf-validate="validateObj" ngf-keep="keep" ngf-keep-distinct="keepDistinct"
+                     ngf-reset-on-click="resetOnClick" ngf-reset-model-on-click="resetModelOnClick"
+                     class="drop-box ng-pristine ng-valid" ngf-drop-available="dropAvailable">
+                    <span ng-show="dropAvailable" class="drop-text"></span><img ng-show="dropAvailable" ngf-src="book.cover ||getImageSrc(book.coverFile)|| ''" class="image-dropped">
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="titulo">Título</label>
+                <div class="col-md-10">
+                    <input id="titulo" name="titulo" ng-model="book.title" type="text" placeholder="Título" class="form-control input-md" required="true">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="autor">Autor</label>
+                <div class="col-md-10">
+                    <input id="autor" name="autor" type="text" placeholder="Autor" class="form-control input-md" ng-model="book.author" required="true">
+
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="sinopsis">Sinopsis</label>
+                <div class="col-md-10">
+                    <textarea class="form-control" id="sinopsis" name="sinopsis" ng-model="book.synopsis" required="true"></textarea>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="categoria">Categoria</label>
+                <div class="col-md-10">
+
+
+                    <select ng-model="book.category" class="form-control" id="categoria"
+                            ng-options="category._id as category.name for category in categories"
+                            ng-init="selectedItem = values[1].name"
+                            ></select>
+                </div>
+            </div>
+
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="archivo">Archivo</label>
+                <div class="col-md-10">
+                    <div ngf-select="" ngf-drop="" ng-model="book.file"  ng-required="true"
+                         ng-model-rejected="rejFiles" ngf-multiple="multiple"
+                         ngf-accept="accept" accept="*" ng-disabled="disabled"
+                         ngf-capture="capture" ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                         ngf-validate="validateObj" ngf-keep="keep" ngf-keep-distinct="keepDistinct"
+                         ngf-reset-on-click="resetOnClick" ngf-reset-model-on-click="resetModelOnClick"
+                         class="drop-box drop-file ng-pristine ng-valid" ngf-drop-available="dropAvailable">
+                        <span ng-show="dropAvailable" class="drop-text">{{book.file.name }} </span>
+                        <span ng-show="dropAvailable" class="search-text">Buscar</span>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="disponible">Disponible sin códigos</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <label for="disponible-0">
+                            <input type="checkbox" name="disponible" id="disponible-0" ng-model="book.isDefault">
+
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div >
+
+
+
+
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+
+
+            </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Guardar">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+
+    </div>   </form>
+</div><!-- /.modal-content -->

@@ -1,0 +1,65 @@
+<ion-view class="book-menu">
+	<ion-content scroll="false" class="no-header">
+		<div class="tabs-striped tabs-top">
+			<div class="tabs">
+				<a ng-class="{'tab-item-active': tab.active == 0}" class="tab-item" ng-click="tab.active = 0">Indice</a>
+				<a ng-class="{'tab-item-active': tab.active == 1}" class="tab-item" ng-click="tab.active = 1">Marcadores</a>
+				<a ng-class="{'tab-item-active': tab.active == 2}" class="tab-item" ng-click="tab.active = 2">Notas</a>
+			</div>
+			<ion-content class="has-tabs-top" scroll="false">
+				<ion-slide-box class="no-pager" active-slide="tab.active">
+					<ion-slide>
+						<ion-scroll style="width:100%; height:100%">
+							<div class="list">
+								<div class="item" ng-repeat="chapter in chapterSettings.toc" ng-click="goChapter(chapter)">
+									<div class="row">
+										<div class="col" ng-bind="chapter.title"></div>
+										<div class="col col-10 page-number" ng-bind="chapter.pageInBook"></div>
+									</div>
+								</div>
+							</div>
+						</ion-scroll>
+					</ion-slide>
+					<ion-slide>
+						<ion-scroll style="width:100%; height:100%">
+							<div class="list">
+								<div class="item" ng-repeat="bookmark in bookmarks" ng-click="goBookmark(bookmark)">
+									<div class="row">
+										<div class="col" ng-bind="bookmark.chapter.title"></div>
+										<div class="col col-10 page-number" ng-bind="bookmark.pageInBook"></div>
+									</div>
+									<div class="row date">
+										<div class="col">
+											<img style="width:15px;" />
+											<span ng-bind="bookmark.creationDate | bookmarkDate"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ion-scroll>
+					</ion-slide>
+					<ion-slide>
+						<ion-scroll style="width:100%; height:100%">
+							<div class="list">
+								<div class="item" ng-repeat="note in notes" ng-click="goBookmark(note)">
+									<div class="row">
+										<div class="col note">
+											<span ng-bind="note.value | limitTo : 180">
+											</span><span ng-if="note.value.length > 180">...</span>
+										</div>
+										<div class="col col-10 page-number" ng-bind="note.pageInBook"></div>
+									</div>
+									<div class="row">
+										<div class="col date date-right">
+											<span ng-bind="note.creationDate | bookmarkDate"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ion-scroll>
+					</ion-slide>
+				</ion-slide-box>
+			</ion-content>
+		</div>
+	</ion-content>
+</ion-view>

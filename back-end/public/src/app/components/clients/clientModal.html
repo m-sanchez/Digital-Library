@@ -1,0 +1,66 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Cliente</h4>
+    </div>  <form class="form-horizontal"  ng-submit="ok()">
+    <div class="modal-body">
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-home"></span>
+                    <input id="titulo" name="titulo" ng-model="client.company" type="text" placeholder="Empresa" class="form-control input-md" required="true">
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <input id="contacto" name="autor" type="text" placeholder="Persona de contacto" class="form-control input-md" ng-model="client.contact" required="true">
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-phone"></span>
+                    <input id="telefono" name="autor" type="text" placeholder="Num. teléfono" class="form-control input-md" ng-model="client.phone" required="true">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Text input-->
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+                    <input id="mail" name="autor" type="email" placeholder="Email" class="form-control input-md" ng-model="client.mail" required="true">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary btn-default" value="Guardar">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+
+    </div>   </form>
+</div><!-- /.modal-content -->

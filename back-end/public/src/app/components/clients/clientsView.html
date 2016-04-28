@@ -1,0 +1,26 @@
+
+<div class="admin-top">
+    <h4>Clientes</h4>
+
+
+    <div ng-click="newClient()" class="action-add">
+    <span class="glyphicon glyphicon-plus-sign"></span> <span>Nuevo Cliente</span></div>
+<div class="planeta-table">
+    <div class="row" ng-repeat="client in clients" ng-class="{'editing':client==currentClient}">
+        <div class="col-md-9 col-xs-8" ><a ng-click="selectClient(client)"><span>{{client.company}}</span></a></div>
+        <div class="col-md-3 col-xs-4" >
+            <a ng-really-head="Borrar" ng-really-message="¿Estás seguro de borrar el cliente {{client.company}} ?" ng-really-click="deleteClient($index)" item="item"><span class="glyphicon glyphicon-remove-circle" ></span></a>
+
+            <span class="glyphicon glyphicon-pencil" ng-click="edit($index)"></span>
+        </div>
+    </div>
+</div>
+</div>
+
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<!--<div class="loading-wrapper" ng-class="{hiding:loaded}">
+    <div class="timer">
+        Loading...
+    </div>
+</div>-->
+
