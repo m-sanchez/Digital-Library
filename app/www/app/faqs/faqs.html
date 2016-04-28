@@ -1,0 +1,23 @@
+<ion-view view-title="FAQ'S">
+	<ion-nav-bar class="bar-stable">
+		<ion-nav-back-button style="font-size: 0px;"></ion-nav-back-button>
+		<ion-nav-buttons side="left">
+		<button class="drawer-button button button-icon button-clear ion-ios-book-outline">Volver a Libreria</button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content>
+		<ion-list>
+			<div ng-repeat="faq in sections">
+			  <ion-item class="item question" ng-click="toggleGroup(faq)">
+			     {{faq.title}}
+			     <i class="icon" style="float:right" ng-class="isGroupShown(faq) ? 'ion-arrow-up-b' : 'ion-arrow-down-b'"></i>
+			  </ion-item>
+			  <div class="item-accordion" style="" ng-repeat="content in faq.content" ng-show="isGroupShown(faq)">
+			    {{content}}
+			  </div>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>
+
+

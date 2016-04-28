@@ -1,8 +1,8 @@
-<div id="loadingWindow" ng-class="{'active': loadingIsActive(), 'indeterminate': loadingIsIndeterminate()}">
+<div id="loadingWindow" ng-class="{active:showLoading || showLoading===0 , indeterminate:showLoading===true}">
 	<div>
 		<div class="title">Loading ...</div>
 		<div class="progress">
-			<div class="progress-bar" ng-style="{'width': slShowLoading + '%'}"></div>
+			<div class="progress-bar" ng-style="{'width': showLoading + '%'}"></div>
 		</div>
 	</div>
 </div>

@@ -4,6 +4,6 @@
 	angular
 		.module('frontEnd')
 		.constant('apiUrl',
-			'http://bdigital-slash.cloud.slashpool.com/api').constant('imagesBase',
-			'http://bdigital-slash.cloud.slashpool.com');
+			'http://localhost:3000/api').constant('imagesBase',
+			'http://localhost:3000');
 })();

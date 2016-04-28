@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+		<title></title>
+		
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="cordova.js"></script>
+
+		<script type="text/javascript" src="content_sync.js"></script>
+	</head>
+	<body ng-app="slash.example">
+		BDigital Splash
+		<div id="progress"></div>
+
+		<script type="text/javascript">
+			var SPLASH_MIN_TIME = 3000;
+			var start = (new Date()).getTime();
+
+			window.app = {
+				isWebView: function() {
+					return !(!window.cordova && !window.PhoneGap && !window.phonegap && !window.forge);
+				},
+
+				// Application Constructor
+				initialize: function() {
+					if(this.isWebView()){
+						this.bindEvents();
+					}else{
+						this.onDeviceReady();
+					}
+				},
+
+				// Bind Event Listeners
+				//
+				// Bind any events that are required on startup. Common events are:
+				// 'load', 'deviceready', 'offline', and 'online'.
+				bindEvents: function() {
+					document.addEventListener('deviceready', this.onDeviceReady, false);
+				},
+
+				// deviceready Event Handler
+				//
+				// The scope of 'this' is the event. In order to call the 'receivedEvent'
+				// function, we must explicity call 'app.receivedEvent(...);'
+				onDeviceReady: function() {
+					function incrementalUpdate(from, to) {
+						appUpdater.update("http://192.168.1.54:3000/pkg_" + from + ".zip", from, function(path) {
+							if(path){
+								if (from < to) {
+									incrementalUpdate(from + 1, to);
+								} else {
+									appUpdater.run();
+								}
+							}else{
+								alert("Autoupdate failed. Please, update from the store");
+								appUpdater.run();
+							}
+						});
+					}
+
+					app.receivedEvent('deviceready');
+
+					appUpdater.init(function(data) {
+						appUpdater.checkForUpdates(function(result) {
+							if (!result.outdated) {
+								// alert("Not outdated, running");
+
+								setTimeout(function() {
+									window.location.replace(data.localPath + "/index.html");
+								}, SPLASH_MIN_TIME - ((new Date()).getTime() - start)); // Time - elapsed = Time - (now - start)
+								return;
+							}
+
+							if (result.type == "cordova") {
+								alert("Please, update the app from the store");
+								return appUpdater.run();
+							}
+
+							if (result.type == "app") {
+								if (confirm("There's a new version, do you want to download it?")) {
+									var fromVersion = appUpdater.getCurrentVersion() + 1;
+									var toVersion = result.appVersion;
+
+									incrementalUpdate(fromVersion, toVersion);
+								} else {
+									appUpdater.run();
+								}
+								return;
+							}
+
+							// Lolwut?
+							alert("Lolwut? " + result);
+							appUpdater.run();
+						});
+					});
+				},
+
+				// Update DOM on a Received Event
+				receivedEvent: function(id) {
+					console.log('Received Event: ' + id);
+				}
+			};
+
+			app.initialize();
+		</script>
+	</body>
+</html>

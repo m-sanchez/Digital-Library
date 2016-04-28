@@ -1,0 +1,24 @@
+<ion-view view-title="Mis Libros">
+	<!-- Header -->
+	<ion-nav-bar class="bar-stable" ng-click="headerClick($event)">
+		<ion-nav-back-button style="font-size: 0px;"></ion-nav-back-button>
+		<ion-nav-buttons side="left">
+			<button class="drawer-button button button-icon button-clear ion-ios-book-outline" ng-click="backLibrary()"> Volver a la Libreria</button>
+		</ion-nav-buttons>
+		<ion-nav-buttons side="right">
+			<button class="drawer-button button button-icon button-clear ion-power" ng-click="checkLoguin()" ></button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content>
+			<div style="height:100%;display:block">
+				<div class="divsNoLogin" style="text-align:center">
+					<img src="" width="150px" height="150px" /><br>
+					<p>No has iniciado la sesión</p>
+				</div>
+				<div class="divsNoLogin">
+					<p style="color:#666666;font-size:1em">Introduce tu código<br> para disfrutar de todas las ventajas<br> de @Libros de Empresa.</p>
+				</div>
+				<div class="divsNoLogin"></div>
+			</div>
+	</ion-content>
+</ion-view>

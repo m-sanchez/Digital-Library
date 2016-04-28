@@ -1,7 +1,0 @@
-bower_components
-node_modules
-private/uploads
-.sass-cache
-public/src/styles
-npm-debug.log
-public/src/uploads

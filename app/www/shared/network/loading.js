@@ -6,7 +6,7 @@
 	var template = "shared/network/loading.html";
 	var loadingDefault = true;
 	var debounceTime = 0;
-	var slShowLoading = false;
+
 
 	// Declaration of the service's module
 	var module = angular.module('slash.fw.loading', ["slash.fw.rest"])
@@ -27,14 +27,7 @@
 	})
 	.run(function($timeout, $rootScope, $templateRequest, $sce, $compile){
 		_timeout = $timeout;
-
-		$rootScope.loadingIsActive = function(){
-			return (slShowLoading || slShowLoading === 0);
-		}
-		$rootScope.loadingIsIndeterminate = function(){
-			return (slShowLoading === true);
-		}
-
+		_rootScope = $rootScope;
 
 		var templateUrl = $sce.getTrustedResourceUrl(template);
 		$templateRequest(templateUrl).then(function(template){
@@ -49,17 +42,12 @@
 	})
 
 	var _timeout;
+	var _rootScope;
 	var hiding = null;
 	var settingProgress = null;
 	var n = 0;
-	var getStackTrace = function() {
-		return (new Error()).stack;
-	};
 	var service = {
 		push: function(){
-			/*console.log("push " + n);
-			console.log(getStackTrace());*/
-
 			n++;
 
 			if(n == 1){
@@ -67,9 +55,6 @@
 			}
 		},
 		pop: function(){
-			/*console.log("pop " + n);
-			console.log(getStackTrace());*/
-
 			n--;
 			
 			if(n < 0){
@@ -81,44 +66,30 @@
 			}
 		},
 		showLoading: function(){
-			/*console.log("show");
-			console.log(getStackTrace());*/
-
 			if(hiding){
 				clearTimeout(hiding);
 				hiding = null;
 			}else{
 				_timeout(function(){
-					console.log("do show");
-					slShowLoading = true;
+
+					_rootScope.showLoading = true;
 				});
 			}
 		},
 		hideLoading: function(){
 			if(hiding) return;
 
-			/*console.log("hide");
-			console.log(getStackTrace());*/
-
 			n = 0;
 
 			hiding = setTimeout(function(){
 				hiding = null;
 				_timeout(function(){
-					// console.log("do hide 1");
-					// There's some kind of bug that although showLoading is false, loadingIsActive is called and returns false, ng-class won't remove the class, unless it's set to true and false again. Weird.
-					slShowLoading = true;
-					_timeout(function(){
-						// console.log("do hide 2");
-						slShowLoading = false;
-					}, 100);
-				}, 100);
+					_rootScope.showLoading = false;
+				});
 			}, debounceTime);
 		},
 		setProgress: function(progress){
-			/*console.log("progress");
-			console.log(getStackTrace());*/
-
+			// console.log(progress);
 			if(settingProgress){
 				_timeout.cancel(settingProgress);
 			}
@@ -126,16 +97,15 @@
 			settingProgress = _timeout(function(){
 				settingProgress = null;
 
-				if(slShowLoading === false){
+				if(_rootScope.showLoading === false){
 					console.warn("No loading dialog, can't set progress");
 					return;
 				}
 
-				slShowLoading = progress;
+				_rootScope.showLoading = progress;
 			});
 		}
 	}
-	window.loading = service;
 
 	module.config(function(restProvider){
 		function requestWantsLoading(request){

@@ -1,9 +1,9 @@
 
 /*CUSTOMIZE POPUP*/
 .custom-popup.popup-container .popup {
-  border-radius: 7px;
+  border-radius:0.5em;
   width: 340px;
-  padding: 5px;
+  padding: 0.4em;
   background-color: #F5F5F5;
 }
 
@@ -22,35 +22,33 @@
 }
 
 .custom-popup.popup-container .bar-footer{
-  border-radius: 0 0 7px 7px;
+  border-radius: 0 0 0.5em 0.5em;
 }
 
 
 
 
 /*TEMPLATE*/
+#divPopup{
+  height: 6em;
+  padding:0;
+}
 .buttonAccept {
 	border: none;
     color: #ffffff;
     background-color: #999999;
-    height: 35px;
+    height: 2.45em;
     text-align: center;
 }
 .login p {
 	color: #666666;
 }
-.login .row:last-child {
-	padding-bottom: 0px;
-}
 
 .login h5 {
 	color: #666666;
-	margin-top: 28px;
+	margin-top: 2.5em;
 	font-size: 0.8em;
 	font-weight: 500;
-}
-.login .row:last-child {
-	padding-bottom: 0px;
 }
 
 .login .bar-footer{
@@ -59,6 +57,7 @@
 }
 .buttonOmitir{
   padding:0 !important;
+  margin:0;
   color:#999999 !important;
-  margin: 0 !important;
+  margin-top: 0 !important;
 }

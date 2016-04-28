@@ -1,0 +1,35 @@
+
+<ion-view class="lector">
+	<ion-nav-buttons side="right">
+		<button class="button button-icon button-icon-text" ng-click="stylesPopover.show($event)">A</button>
+		<button class="button button-icon icon ion-clipboard" ng-click="notesPopover.show($event)" ng-class="{'highlight':hasNote}"></button>
+		<button class="button button-icon icon ion-bookmark" ng-click="toggleBookmark()" ng-class="{'highlight':hasBookmark}"></button>
+		<button class="button button-icon icon ion-share"></button>
+	</ion-nav-buttons>
+	<ion-content scroll="false" style="padding:0"> <!-- I need padding 0 to make these two readers identical -->
+		<page-count class="page-count" book-data="bookData" styles="styles" on-info-progress="pcProgress($args)" on-info-loaded="pcProgress($args)"></page-count>
+		<epub-reader book-data="bookData" styles="styles" chapter-settings="chapterSettings"></epub-reader>
+		<div class="pullupMenu" template="app/book/book.menu.html" show="bookMenu.show" controller="BookMenuCtrl" scope="this"></div>
+	</ion-content>
+	<ion-footer-bar>
+		<div ng-show="bookMenu.show" class="button button-icon ion-ios-book-outline" ng-click="hideBookMenu()">Seguir leyendo</div>
+		<div ng-show="!bookMenu.show" class="range range-positive">
+			<div class="button button-icon button-clear ion-ios-list-outline" ng-click="showBookMenu()"></div>
+			<input type="range" name="page" step="1" min="1" max="{{slider.totalPages}}"
+				ng-model="slider.bookPage"
+				ng-mouseup="slider.onChange()"
+				ng-touchend="slider.onChange()"
+				/>
+			<div>{{slider.bookPage}}/{{slider.totalPages}}</div>
+		</div>
+
+	</ion-footer-bar>
+	<div class="book-loading" ng-if="showBookProgress">
+		<div class="loader">
+			<div class="image-progress">
+				<img ng-src="{{bookCover}}" />
+				<div class="progress"></div>
+			</div>
+		</div>
+	</div>
+</ion-view>
